@@ -1,25 +1,27 @@
 import express from "express";
-import { chats } from "./data/data.js";
 import dotenv from "dotenv";
+import { connectDB } from "./config/db.js";
+import userRoutes from "./routes/user.js";
+import chatRoutes from "./routes/chat.js";
+import { notFound, errorHandler } from "./middleware/error.js";
 
 const app = express();
 
 dotenv.config();
+connectDB();
 
 const PORT = process.env.PORT || 5000;
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("API is running successfully");
 });
 
-app.get("/api/chat", (req, res) => {
-  res.send(chats);
-});
+app.use("/api/user", userRoutes);
+app.use("/api/chat", chatRoutes);
 
-app.get("/api/chat/:id", (req, res) => {
-  const { id } = req.params;
-  const chat = chats.find((chat) => chat._id === id);
-  res.send(chat);
-});
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, console.log(`Server Started on PORT ${PORT}`));
