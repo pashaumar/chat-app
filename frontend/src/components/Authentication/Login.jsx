@@ -5,6 +5,7 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -12,6 +13,7 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const submitHandler = async () => {
     setLoading(true);
@@ -47,9 +49,10 @@ const Login = () => {
         position: "bottom",
       });
       if (data) {
-        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("userInfo", JSON.stringify(data));
       }
       setLoading(false);
+      navigate("chats");
     } catch (err) {
       toast({
         title: err.response.data.message,

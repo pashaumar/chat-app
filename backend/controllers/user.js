@@ -20,7 +20,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
-    pic,
+    ...(pic && { pic }),
   });
 
   if (user) {

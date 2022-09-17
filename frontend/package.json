@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://127.0.0.1:5000",
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.9",
     "@chakra-ui/react": "^2.3.1",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -41,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0"
   }
 }
