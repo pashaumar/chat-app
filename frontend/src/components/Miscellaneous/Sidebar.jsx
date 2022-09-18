@@ -124,7 +124,7 @@ const Sidebar = () => {
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
             <Text display={{ base: "none", md: "flex" }} px="4">
               Search User
             </Text>
@@ -182,7 +182,7 @@ const Sidebar = () => {
               searchResult.map((user) => (
                 <UserListItem
                   key={user._id}
-                  accessChat={() => accessChat(user._id)}
+                  handleClick={() => accessChat(user._id)}
                   user={user}
                 />
               ))
