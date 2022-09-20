@@ -22,7 +22,7 @@ import { ViewIcon } from "@chakra-ui/icons";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../User/UserBadgeItem";
 
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { selectedChat, setSelectedChat, user } = ChatState();
   const [chatName, setChatName] = useState("");
@@ -102,6 +102,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
       user1._id = user._id ? setSelectedChat() : setSelectedChat(data);
       setSelectedChat(data);
       setFetchAgain(!fetchAgain);
+      fetchMessages();
       setLoading(false);
       onClose();
     } catch (err) {
